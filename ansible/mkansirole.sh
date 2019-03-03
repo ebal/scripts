@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# ebal, Mon, 09 Apr 2018 12:21:37 +0300
 # a bash shell script for creating a directory structure within the Ansible role templates (with main.yml)
+
+# ebal, Mon, 09 Apr 2018 12:21:37 +0300
+# ebal, Sun, 03 Mar 2019 20:10:08 +0200
 
 echo " "
 
@@ -15,7 +17,7 @@ function usage() {
 }
 
 function check_args() {
-    if [ $# -ne 1 ]
+    if [ $# -ne 2 ]
       then
         usage
     fi
@@ -67,3 +69,5 @@ function main() {
 }
 
 main "$@"
+
+# vim: sts=2 sw=2 ts=2 et
