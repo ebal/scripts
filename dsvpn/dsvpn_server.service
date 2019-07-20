@@ -5,4 +5,4 @@ Description=Dead Simple VPN - Server
 ExecStart=/usr/local/bin/dsvpn server /root/vpn.key auto 443 auto 10.8.0.254 10.8.0.2
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=network.target
