@@ -1,0 +1,11 @@
+- /dev/**
+- /lost+found/**
+- /media/**
+- /mnt/**
+- /proc/**
+- /run/**
+- /swap.img
+- /swapfile
+- /sys/**
+- /tmp/**
+- /var/tmp/**
