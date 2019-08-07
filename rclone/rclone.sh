@@ -1,25 +1,32 @@
 #!/bin/sh
-# ebal, Sun, 04 Aug 2019 16:33:14 +0300
+# ebal, Wed, 07 Aug 2019 09:10:11 +0300
+
+# Declare Variables
+HOST=$(hostname)
+YEAR=$(date +%Y)
+MNTH=$(date +%m)
+TDAY=$(date +%d)
+HHMM=$(date +%H%M)
 
 # Create Rclone Log Directory
-mkdir -p  /var/log/rclone/`date +%Y`/`date +%m`/`date +%d`/
+mkdir -p /var/log/rclone/$YEAR/$MNTH/$TDAY/
 
 # Compress previous log file
-gzip /var/log/rclone/`date +%Y`/`date +%m`/`date +%d`/*
+gzip /var/log/rclone/$YEAR/$MNTH/$TDAY/*
 
 # Define current log file
-log_file="/var/log/rclone/`date +%Y`/`date +%m`/`date +%d`/`hostname -f`-`date +%Y%m%d_%H%M`.log"
+log_file="/var/log/rclone/$YEAR/$MNTH/$TDAY/$HOST-$YEAR$MNTH$TDAY$HHMM.log"
 
 # Filter out - exclude dirs & files that we do not need
 filter_f="/root/.config/rclone/filter-file.txt"
 
 # Sync !
-/usr/local/bin/rclone
-    --quiet
-    --delete-before
-    --ignore-existing
-    --links
-    --filter-from $filter_f
-    --log-file $log_file
-    sync / encrypt:/`hostname -f`/
+/usr/local/bin/rclone       \
+    --quiet                 \
+    --delete-before         \
+    --ignore-existing       \
+    --links                 \
+    --filter-from $filter_f \
+    --log-file $log_file    \
+    sync / encrypt:/$HOST`
 
