@@ -52,12 +52,12 @@ function build() {
 
     buildconf $name-$version $name
     rpmbuild -ts /root/rpmbuild/SOURCES/$name-$version.tar.bz2
-    rpm -ih /root/rpmbuild/SRPMS/*.src.rpm
+    yum -y install /root/rpmbuild/SRPMS/*.src.rpm
 
     sed -i -e 's/exit 1/exit 0/g' /root/rpmbuild/SPECS/$name.spec
 
     rpmbuild --clean -ba /root/rpmbuild/SPECS/$name.spec
-    rpm -ih /root/rpmbuild/RPMS/x86_64/*.x86_64.rpm
+    yum -y install /root/rpmbuild/RPMS/x86_64/*.x86_64.rpm
 }
 
 init
