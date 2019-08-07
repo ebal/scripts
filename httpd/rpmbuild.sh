@@ -52,7 +52,7 @@ function build() {
 
     buildconf $name-$version $name
     rpmbuild -ts /root/rpmbuild/SOURCES/$name-$version.tar.bz2
-    yum -y install /root/rpmbuild/SRPMS/*.src.rpm
+    rpm -ivh /root/rpmbuild/SRPMS/*.src.rpm
 
     sed -i -e 's/exit 1/exit 0/g' /root/rpmbuild/SPECS/$name.spec
 
