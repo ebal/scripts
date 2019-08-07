@@ -57,7 +57,7 @@ function build() {
     sed -i -e 's/exit 1/exit 0/g' /root/rpmbuild/SPECS/$name.spec
 
     rpmbuild --clean -ba /root/rpmbuild/SPECS/$name.spec
-    rpm -ih /root/rpmbuild/RPMS/x86_64/$name-$version*.x86_64.rpm
+    rpm -ih /root/rpmbuild/RPMS/x86_64/*.x86_64.rpm
 }
 
 init
