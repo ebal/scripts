@@ -32,6 +32,6 @@ EOF
 
 chmod +x /mnt/$Disk/root/grub.sh
 
-arch-chroot /mnt/vda/ /root/grub.sh
+arch-chroot /mnt/$Disk/ /root/grub.sh
 
 reboot
