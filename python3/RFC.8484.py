@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# ./RFC.8484.py balaskas.gr A
+# ./RFC.8484.py balaskas.gr AAAAA
 
 import dns.message
 import base64
@@ -8,12 +8,11 @@ import requests
 import sys
 
 message = dns.message.make_query( sys.argv[1] , sys.argv[2] )
-dns_req = base64.urlsafe_b64encode(message.to_wire()).decode('UTF8').rstrip('=')
+dns_req = base64.b64encode(message.to_wire()).decode('UTF8').rstrip('=')
 
 url = "https://doh.libredns.gr/dns/?dns=" + dns_req
 
-r = requests.get(
-        url,
+r = requests.get( url,
         headers={"Content-type": "application/dns-message"}
     )
 
